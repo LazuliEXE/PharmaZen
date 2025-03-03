@@ -58,29 +58,9 @@ class Medicament
     #[ORM\OneToMany(targetEntity: Achat::class, mappedBy: 'vente')]
     private Collection $achat;
 
-    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'liste_medicaments_indiques')]
-    private ?self $medicament_indique = null;
-
-    /**
-     * @var Collection<int, self>
-     */
-    #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'medicament_indique')]
-    private Collection $liste_medicaments_indiques;
-
-    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'liste_medicaments_contre_indiques')]
-    private ?self $medicament_contre_indique = null;
-
-    /**
-     * @var Collection<int, self>
-     */
-    #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'medicament_contre_indique')]
-    private Collection $liste_medicaments_contre_indiques;
-
     public function __construct()
     {
         $this->achat = new ArrayCollection();
-        $this->liste_medicaments_indiques = new ArrayCollection();
-        $this->liste_medicaments_contre_indiques = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -256,90 +236,6 @@ class Medicament
             // set the owning side to null (unless already changed)
             if ($achat->getVente() === $this) {
                 $achat->setVente(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getMedicamentIndique(): ?self
-    {
-        return $this->medicament_indique;
-    }
-
-    public function setMedicamentIndique(?self $medicament_indique): static
-    {
-        $this->medicament_indique = $medicament_indique;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, self>
-     */
-    public function getListeMedicamentsIndiques(): Collection
-    {
-        return $this->liste_medicaments_indiques;
-    }
-
-    public function addListeMedicamentsIndique(self $listeMedicamentsIndique): static
-    {
-        if (!$this->liste_medicaments_indiques->contains($listeMedicamentsIndique)) {
-            $this->liste_medicaments_indiques->add($listeMedicamentsIndique);
-            $listeMedicamentsIndique->setMedicamentIndique($this);
-        }
-
-        return $this;
-    }
-
-    public function removeListeMedicamentsIndique(self $listeMedicamentsIndique): static
-    {
-        if ($this->liste_medicaments_indiques->removeElement($listeMedicamentsIndique)) {
-            // set the owning side to null (unless already changed)
-            if ($listeMedicamentsIndique->getMedicamentIndique() === $this) {
-                $listeMedicamentsIndique->setMedicamentIndique(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getMedicamentContreIndique(): ?self
-    {
-        return $this->medicament_contre_indique;
-    }
-
-    public function setMedicamentContreIndique(?self $medicament_contre_indique): static
-    {
-        $this->medicament_contre_indique = $medicament_contre_indique;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, self>
-     */
-    public function getListeMedicamentsContreIndiques(): Collection
-    {
-        return $this->liste_medicaments_contre_indiques;
-    }
-
-    public function addListeMedicamentsContreIndique(self $listeMedicamentsContreIndique): static
-    {
-        if (!$this->liste_medicaments_contre_indiques->contains($listeMedicamentsContreIndique)) {
-            $this->liste_medicaments_contre_indiques->add($listeMedicamentsContreIndique);
-            $listeMedicamentsContreIndique->setMedicamentContreIndique($this);
-        }
-
-        return $this;
-    }
-
-    public function removeListeMedicamentsContreIndique(self $listeMedicamentsContreIndique): static
-    {
-        if ($this->liste_medicaments_contre_indiques->removeElement($listeMedicamentsContreIndique)) {
-            // set the owning side to null (unless already changed)
-            if ($listeMedicamentsContreIndique->getMedicamentContreIndique() === $this) {
-                $listeMedicamentsContreIndique->setMedicamentContreIndique(null);
             }
         }
 
