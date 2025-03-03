@@ -1,0 +1,23 @@
+{% block body %}
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <a class="navbar-brand" href="#">
+                <img src="{{ asset('images/Pharmazen.svg') }}" width="48" height="48" alt="Logo">
+            </a>
+            <form class="d-flex flex-grow-1 mx-3" role="search" style="max-width: 600px;">
+                <input class="form-control me-2" type="search" placeholder="Entrez votre produit..." aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">
+                    <img src="{{ asset('images/search.svg') }}" width="24" height="24" alt="Search">
+                </button>
+            </form>
+            <div class="d-flex align-items-center">
+                <a class="nav-link me-3" href="#">
+                    <img src="{{ asset('images/cart.svg') }}" width="32" height="32" alt="Cart">
+                </a>
+                <a class="nav-link" href="#">
+                    <img src="{{ asset('images/person.svg') }}" width="32" height="32" alt="Account">
+                </a>
+            </div>
+        </div>
+    </nav>
+{% endblock %}

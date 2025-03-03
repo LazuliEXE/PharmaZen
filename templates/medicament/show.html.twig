@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Medicament{% endblock %}
+
+{% block body %}
+    <h1>Medicament</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ medicament.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom_comm</th>
+                <td>{{ medicament.nomComm }}</td>
+            </tr>
+            <tr>
+                <th>Nom_gen</th>
+                <td>{{ medicament.nomGen }}</td>
+            </tr>
+            <tr>
+                <th>Dosage</th>
+                <td>{{ medicament.dosage }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ medicament.prix }}</td>
+            </tr>
+            <tr>
+                <th>Forme</th>
+                <td>{{ medicament.forme }}</td>
+            </tr>
+            <tr>
+                <th>Notice</th>
+                <td>{{ medicament.notice }}</td>
+            </tr>
+            <tr>
+                <th>Indication</th>
+                <td>{{ medicament.indication }}</td>
+            </tr>
+            <tr>
+                <th>Contre_indication</th>
+                <td>{{ medicament.contreIndication }}</td>
+            </tr>
+            <tr>
+                <th>Effet_sec</th>
+                <td>{{ medicament.effetSec }}</td>
+            </tr>
+            <tr>
+                <th>Date_expiration</th>
+                <td>{{ medicament.dateExpiration ? medicament.dateExpiration|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Composition</th>
+                <td>{{ medicament.composition }}</td>
+            </tr>
+            <tr>
+                <th>Fabricant</th>
+                <td>{{ medicament.fabricant }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_medicament_index') }}">back to list</a>
+
+    <a href="{{ path('app_medicament_edit', {'id': medicament.id}) }}">edit</a>
+
+    {{ include('medicament/_delete_form.html.twig') }}
+{% endblock %}

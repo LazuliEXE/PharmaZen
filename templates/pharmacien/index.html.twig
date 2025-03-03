@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pharmacien index{% endblock %}
+
+{% block body %}
+    <h1>Pharmacien index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Telephone</th>
+                <th>Courriel</th>
+                <th>DOB</th>
+                <th>Id</th>
+                <th>Numero_licence</th>
+                <th>Rpps_pharmacien</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pharmacien in pharmaciens %}
+            <tr>
+                <td>{{ pharmacien.nom }}</td>
+                <td>{{ pharmacien.prenom }}</td>
+                <td>{{ pharmacien.telephone }}</td>
+                <td>{{ pharmacien.courriel }}</td>
+                <td>{{ pharmacien.DOB ? pharmacien.DOB|date('Y-m-d') : '' }}</td>
+                <td>{{ pharmacien.id }}</td>
+                <td>{{ pharmacien.numeroLicence }}</td>
+                <td>{{ pharmacien.rppsPharmacien }}</td>
+                <td>
+                    <a href="{{ path('app_pharmacien_show', {'id': pharmacien.id}) }}">show</a>
+                    <a href="{{ path('app_pharmacien_edit', {'id': pharmacien.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_pharmacien_new') }}">Create new</a>
+{% endblock %}
