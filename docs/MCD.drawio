@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="5yNYV8bS4f6ZOX1W281M" name="Page-1">
-        <mxGraphModel dx="1102" dy="753" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+        <mxGraphModel dx="663" dy="414" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -41,7 +41,7 @@
                         <mxRectangle width="30" height="30" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="11" value="RPPS_PHARMACIEN" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" parent="9" vertex="1">
+                <mxCell id="11" value="RPPS_PHARMACIEN INT NN" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" parent="9" vertex="1">
                     <mxGeometry x="30" width="190" height="30" as="geometry">
                         <mxRectangle width="190" height="30" as="alternateBounds"/>
                     </mxGeometry>
@@ -629,10 +629,10 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="143" value="MEDICAMENT_LIE" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#fad7ac;strokeColor=#b46504;" vertex="1" parent="1">
-                    <mxGeometry x="67.5" y="480" width="225" height="120" as="geometry"/>
+                    <mxGeometry x="58.75" y="480" width="242.5" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="159" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" vertex="1" parent="143">
-                    <mxGeometry y="30" width="225" height="30" as="geometry"/>
+                    <mxGeometry y="30" width="242.5" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="160" value="PK, FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="159">
                     <mxGeometry width="50" height="30" as="geometry">
@@ -640,12 +640,12 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="161" value="ID_MEDICAMENT INT AI" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=5;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="159">
-                    <mxGeometry x="50" width="175" height="30" as="geometry">
-                        <mxRectangle width="175" height="30" as="alternateBounds"/>
+                    <mxGeometry x="50" width="192.5" height="30" as="geometry">
+                        <mxRectangle width="192.5" height="30" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="144" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" vertex="1" parent="143">
-                    <mxGeometry y="60" width="225" height="30" as="geometry"/>
+                    <mxGeometry y="60" width="242.5" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="145" value="PK, FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="144">
                     <mxGeometry width="50" height="30" as="geometry">
@@ -653,21 +653,21 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="146" value="ID_MEDICAMENT_LIE INT AI" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=5;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="144">
-                    <mxGeometry x="50" width="175" height="30" as="geometry">
-                        <mxRectangle width="175" height="30" as="alternateBounds"/>
+                    <mxGeometry x="50" width="192.5" height="30" as="geometry">
+                        <mxRectangle width="192.5" height="30" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="147" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" vertex="1" parent="143">
-                    <mxGeometry y="90" width="225" height="30" as="geometry"/>
+                    <mxGeometry y="90" width="242.5" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="148" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="147">
                     <mxGeometry width="50" height="30" as="geometry">
                         <mxRectangle width="50" height="30" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="149" value="BIEN_OU_PAS_BIEN BOOL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="147">
-                    <mxGeometry x="50" width="175" height="30" as="geometry">
-                        <mxRectangle width="175" height="30" as="alternateBounds"/>
+                <mxCell id="149" value="BIEN_OU_PAS_BIEN BOOL NN" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="147">
+                    <mxGeometry x="50" width="192.5" height="30" as="geometry">
+                        <mxRectangle width="192.5" height="30" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="162" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERzeroToMany;startArrow=ERmandOne;strokeColor=light-dark(#000000,#6C8EBF);" edge="1" parent="1" source="143" target="42">
