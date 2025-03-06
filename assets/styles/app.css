@@ -2,14 +2,14 @@ body {
     background-color: rgb(35, 87, 49);
 }
 
-.subnavbar {
-    top: 96px;
-    z-index: 1030;
-}
-
 a {
     text-decoration: none;
     color: rgb(00,00,00);
+}
+
+.subnavbar {
+    top: 96px;
+    z-index: 1030;
 }
 
 .footer_a {

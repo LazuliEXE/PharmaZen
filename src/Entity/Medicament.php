@@ -58,9 +58,19 @@ class Medicament
     #[ORM\OneToMany(targetEntity: Achat::class, mappedBy: 'vente')]
     private Collection $achat;
 
+    #[ORM\ManyToOne(inversedBy: 'id_medicament_lie')]
+    private ?MedicamentLie $Medicament_Lie = null;
+
+    /**
+     * @var Collection<int, MedicamentLie>
+     */
+    #[ORM\OneToMany(targetEntity: MedicamentLie::class, mappedBy: 'id_medicament', orphanRemoval: true)]
+    private Collection $medicamentLies;
+
     public function __construct()
     {
         $this->achat = new ArrayCollection();
+        $this->medicamentLies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -236,6 +246,48 @@ class Medicament
             // set the owning side to null (unless already changed)
             if ($achat->getVente() === $this) {
                 $achat->setVente(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getMedicamentLie(): ?MedicamentLie
+    {
+        return $this->Medicament_Lie;
+    }
+
+    public function setMedicamentLie(?MedicamentLie $Medicament_Lie): static
+    {
+        $this->Medicament_Lie = $Medicament_Lie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, MedicamentLie>
+     */
+    public function getMedicamentLies(): Collection
+    {
+        return $this->medicamentLies;
+    }
+
+    public function addMedicamentLy(MedicamentLie $medicamentLy): static
+    {
+        if (!$this->medicamentLies->contains($medicamentLy)) {
+            $this->medicamentLies->add($medicamentLy);
+            $medicamentLy->setIdMedicament($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMedicamentLy(MedicamentLie $medicamentLy): static
+    {
+        if ($this->medicamentLies->removeElement($medicamentLy)) {
+            // set the owning side to null (unless already changed)
+            if ($medicamentLy->getIdMedicament() === $this) {
+                $medicamentLy->setIdMedicament(null);
             }
         }
 
