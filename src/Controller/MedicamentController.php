@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Medicament;
+use App\Entity\Stock;
 use App\Form\MedicamentType;
 use App\Repository\MedicamentRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,9 +33,12 @@ final class MedicamentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($medicament);
             $entityManager->flush();
-
+            
             return $this->redirectToRoute('app_medicament_index', [], Response::HTTP_SEE_OTHER);
         }
+        $stock_medicament = new Stock();
+        $stock_medicament -> addIdMedicament($medicament);
+        dump($medicament);
 
         return $this->render('medicament/new.html.twig', [
             'medicament' => $medicament,

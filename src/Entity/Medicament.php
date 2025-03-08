@@ -43,9 +43,6 @@ class Medicament
     #[ORM\Column(type: Types::TEXT)]
     private ?string $effet_sec = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date_expiration = null;
-
     #[ORM\Column(type: Types::TEXT)]
     private ?string $composition = null;
 
@@ -58,19 +55,20 @@ class Medicament
     #[ORM\OneToMany(targetEntity: Achat::class, mappedBy: 'vente')]
     private Collection $achat;
 
-    #[ORM\ManyToOne(inversedBy: 'id_medicament_lie')]
-    private ?MedicamentLie $Medicament_Lie = null;
-
     /**
-     * @var Collection<int, MedicamentLie>
+     * @var Collection<int, InteractionMedicamenteuse>
      */
-    #[ORM\OneToMany(targetEntity: MedicamentLie::class, mappedBy: 'id_medicament', orphanRemoval: true)]
-    private Collection $medicamentLies;
+    #[ORM\OneToMany(targetEntity: InteractionMedicamenteuse::class, mappedBy: 'Victime', orphanRemoval: true)]
+    private Collection $interactionMedicamenteuses;
+
+    #[ORM\ManyToOne(inversedBy: 'id_medicament')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Stock $stock = null;
 
     public function __construct()
     {
         $this->achat = new ArrayCollection();
-        $this->medicamentLies = new ArrayCollection();
+        $this->interactionMedicamenteuses = new ArrayCollection();  
     }
 
     public function getId(): ?int
@@ -186,18 +184,6 @@ class Medicament
         return $this;
     }
 
-    public function getDateExpiration(): ?\DateTimeInterface
-    {
-        return $this->date_expiration;
-    }
-
-    public function setDateExpiration(\DateTimeInterface $date_expiration): static
-    {
-        $this->date_expiration = $date_expiration;
-
-        return $this;
-    }
-
     public function getComposition(): ?string
     {
         return $this->composition;
@@ -252,44 +238,44 @@ class Medicament
         return $this;
     }
 
-    public function getMedicamentLie(): ?MedicamentLie
-    {
-        return $this->Medicament_Lie;
-    }
-
-    public function setMedicamentLie(?MedicamentLie $Medicament_Lie): static
-    {
-        $this->Medicament_Lie = $Medicament_Lie;
-
-        return $this;
-    }
-
     /**
-     * @return Collection<int, MedicamentLie>
+     * @return Collection<int, InteractionMedicamenteuse>
      */
-    public function getMedicamentLies(): Collection
+    public function getInteractionMedicamenteuses(): Collection
     {
-        return $this->medicamentLies;
+        return $this->interactionMedicamenteuses;
     }
 
-    public function addMedicamentLy(MedicamentLie $medicamentLy): static
+    public function addInteractionMedicamenteus(InteractionMedicamenteuse $interactionMedicamenteus): static
     {
-        if (!$this->medicamentLies->contains($medicamentLy)) {
-            $this->medicamentLies->add($medicamentLy);
-            $medicamentLy->setIdMedicament($this);
+        if (!$this->interactionMedicamenteuses->contains($interactionMedicamenteus)) {
+            $this->interactionMedicamenteuses->add($interactionMedicamenteus);
+            $interactionMedicamenteus->setVictime($this);
         }
 
         return $this;
     }
 
-    public function removeMedicamentLy(MedicamentLie $medicamentLy): static
+    public function removeInteractionMedicamenteus(InteractionMedicamenteuse $interactionMedicamenteus): static
     {
-        if ($this->medicamentLies->removeElement($medicamentLy)) {
+        if ($this->interactionMedicamenteuses->removeElement($interactionMedicamenteus)) {
             // set the owning side to null (unless already changed)
-            if ($medicamentLy->getIdMedicament() === $this) {
-                $medicamentLy->setIdMedicament(null);
+            if ($interactionMedicamenteus->getVictime() === $this) {
+                $interactionMedicamenteus->setVictime(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStock(): ?Stock
+    {
+        return $this->stock;
+    }
+
+    public function setStock(?Stock $stock): static
+    {
+        $this->stock = $stock;
 
         return $this;
     }

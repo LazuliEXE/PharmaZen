@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\InteractionMedicamenteuse;
 use App\Entity\Medicament;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -22,25 +23,11 @@ class MedicamentType extends AbstractType
             ->add('indication')
             ->add('contre_indication')
             ->add('effet_sec')
-            ->add('date_expiration', null, [
-                'widget' => 'single_text',
-            ])
             ->add('composition')
             ->add('fabricant')
-            ->add('liste_medicaments_indiques', EntityType::class, [
-                'class' => Medicament::class,
-                'choice_label' => 'nom_comm',
-                'required' => false,
-                'placeholder' => 'Veuillez renseignez les indications',
-                'multiple' => true
-            ])
-            ->add('liste_medicaments_contre_indiques', EntityType::class, [
-                'class' => Medicament::class,
-                'choice_label' => 'nom_comm',
-                'required' => false,
-                'placeholder' => 'Veuillez renseignez les contres-indications',
-                'multiple' => true
-            ])
+            // ->add('interaction_medicamenteuses', EntityType::class, [
+                // "class"=>InteractionMedicamenteuse::class
+            // ])
         ;
     }
 
