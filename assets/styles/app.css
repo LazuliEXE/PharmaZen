@@ -1,5 +1,13 @@
+header {
+    background: linear-gradient(to right,#659B5E, #556F44);
+}
+
 body {
-    background-color: rgb(35, 87, 49);
+    background-color: #d7ddd6;
+}
+
+footer {
+    background: linear-gradient(to right,#659B5E, #556F44)
 }
 
 a {
@@ -8,8 +16,31 @@ a {
 }
 
 .subnavbar {
-    top: 96px;
+    background-color: #d7ddd6;
+    top: 98px;
     z-index: 1030;
+}
+
+.marquee {
+    background: linear-gradient(to right, #659B5E,#556F44);
+    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+}
+
+.marquee p {
+    animation: scroll 20s linear infinite;
+    padding-right: 100%;
+    color: rgb(255, 255, 255);
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
 }
 
 .footer_a {
