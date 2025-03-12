@@ -20,6 +20,7 @@
                 <th>Effet_sec</th>
                 <th>Composition</th>
                 <th>Fabricant</th>
+                <th>Quantite</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -38,6 +39,11 @@
                 <td>{{ medicament.effetSec }}</td>
                 <td>{{ medicament.composition }}</td>
                 <td>{{ medicament.fabricant }}</td>
+                {% set total = 0 %}
+                {% for stock in medicament.stocks %}
+                    {% set total = total + stock.quantite %}
+                {% endfor %}
+                <td>{{ total }}</td>
                 <td>
                     <a href="{{ path('app_medicament_show', {'id': medicament.id}) }}">show</a>
                     <a href="{{ path('app_medicament_edit', {'id': medicament.id}) }}">edit</a>

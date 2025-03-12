@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Medicament;
 use App\Entity\Stock;
 use App\Form\MedicamentType;
+use App\Form\StockType;
 use App\Repository\MedicamentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,23 +27,30 @@ final class MedicamentController extends AbstractController
     #[Route('/new', name: 'app_medicament_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $medicament = new Medicament();
-        $form = $this->createForm(MedicamentType::class, $medicament);
-        $form->handleRequest($request);
+        $stock = new Stock();
+        $formStock = $this->createForm(StockType::class, $stock);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        $medicament = new Medicament();
+        $formMedicament = $this->createForm(MedicamentType::class, $medicament);
+        
+        $formMedicament->handleRequest($request);
+        $formStock->handleRequest($request);
+
+        if ($formMedicament->isSubmitted() && $formMedicament->isValid()) {
             $entityManager->persist($medicament);
-            $entityManager->flush();
-            
-            return $this->redirectToRoute('app_medicament_index', [], Response::HTTP_SEE_OTHER);
+            if ($formStock->isSubmitted() && $formStock->isValid()){
+                $stock->setMedicament($medicament);
+                $entityManager->persist($stock);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('app_medicament_index', [], Response::HTTP_SEE_OTHER);
+            }
         }
-        $stock_medicament = new Stock();
-        $stock_medicament -> addIdMedicament($medicament);
-        dump($medicament);
 
         return $this->render('medicament/new.html.twig', [
             'medicament' => $medicament,
-            'form' => $form,
+            'formMedicament' => $formMedicament,
+            'formStock' => $formStock,
         ]);
     }
 
@@ -57,10 +65,10 @@ final class MedicamentController extends AbstractController
     #[Route('/{id}/edit', name: 'app_medicament_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Medicament $medicament, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(MedicamentType::class, $medicament);
-        $form->handleRequest($request);
+        $formMedicament = $this->createForm(MedicamentType::class, $medicament);
+        $formMedicament->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($formMedicament->isSubmitted() && $formMedicament->isValid()) {
             $entityManager->flush();
 
             return $this->redirectToRoute('app_medicament_index', [], Response::HTTP_SEE_OTHER);
@@ -68,7 +76,7 @@ final class MedicamentController extends AbstractController
 
         return $this->render('medicament/edit.html.twig', [
             'medicament' => $medicament,
-            'form' => $form,
+            'formMedicament' => $formMedicament,
         ]);
     }
 

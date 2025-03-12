@@ -22,16 +22,9 @@ class Stock
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_expiration = null;
 
-    /**
-     * @var Collection<int, Medicament>
-     */
-    #[ORM\OneToMany(targetEntity: Medicament::class, mappedBy: 'stock')]
-    private Collection $id_medicament;
-
-    public function __construct()
-    {
-        $this->id_medicament = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'stocks')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Medicament $medicament = null;
 
     public function getId(): ?int
     {
@@ -62,32 +55,14 @@ class Stock
         return $this;
     }
 
-    /**
-     * @return Collection<int, Medicament>
-     */
-    public function getIdMedicament(): Collection
+    public function getMedicament(): ?Medicament
     {
-        return $this->id_medicament;
+        return $this->medicament;
     }
 
-    public function addIdMedicament(Medicament $idMedicament): static
+    public function setMedicament(?Medicament $medicament): static
     {
-        if (!$this->id_medicament->contains($idMedicament)) {
-            $this->id_medicament->add($idMedicament);
-            $idMedicament->setStock($this);
-        }
-
-        return $this;
-    }
-
-    public function removeIdMedicament(Medicament $idMedicament): static
-    {
-        if ($this->id_medicament->removeElement($idMedicament)) {
-            // set the owning side to null (unless already changed)
-            if ($idMedicament->getStock() === $this) {
-                $idMedicament->setStock(null);
-            }
-        }
+        $this->medicament = $medicament;
 
         return $this;
     }

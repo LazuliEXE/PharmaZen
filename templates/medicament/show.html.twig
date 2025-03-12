@@ -48,10 +48,6 @@
                 <td>{{ medicament.effetSec }}</td>
             </tr>
             <tr>
-                <th>Date_expiration</th>
-                <td>{{ medicament.dateExpiration ? medicament.dateExpiration|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
                 <th>Composition</th>
                 <td>{{ medicament.composition }}</td>
             </tr>
@@ -59,9 +55,23 @@
                 <th>Fabricant</th>
                 <td>{{ medicament.fabricant }}</td>
             </tr>
+            
+            {% for stock in medicament.stocks%}
+                <tr>
+                    <th>Quantité</th>
+                    <td>
+                        {{ stock.quantite }}
+                    </td>
+                </tr>
+                <tr>
+                <th>Date d'expiration</th>
+                    <td>
+                        {{ stock.dateExpiration|date("d/m/Y")}}
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
-
     <a href="{{ path('app_medicament_index') }}">back to list</a>
 
     <a href="{{ path('app_medicament_edit', {'id': medicament.id}) }}">edit</a>

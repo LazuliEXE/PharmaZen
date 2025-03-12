@@ -58,17 +58,20 @@ class Medicament
     /**
      * @var Collection<int, InteractionMedicamenteuse>
      */
-    #[ORM\OneToMany(targetEntity: InteractionMedicamenteuse::class, mappedBy: 'Victime', orphanRemoval: true)]
-    private Collection $interactionMedicamenteuses;
+    // #[ORM\OneToMany(targetEntity: InteractionMedicamenteuse::class, mappedBy: 'Victime', orphanRemoval: true)]
+    // private Collection $interactionMedicamenteuses;
 
-    #[ORM\ManyToOne(inversedBy: 'id_medicament')]
-    #[ORM\JoinColumn(nullable: true)]
-    private ?Stock $stock = null;
+    /**
+     * @var Collection<int, Stock>
+     */
+    #[ORM\OneToMany(targetEntity: Stock::class, mappedBy: 'medicament')]
+    private Collection $stocks;
 
     public function __construct()
     {
         $this->achat = new ArrayCollection();
-        $this->interactionMedicamenteuses = new ArrayCollection();  
+        // $this->interactionMedicamenteuses = new ArrayCollection();
+        $this->stocks = new ArrayCollection();  
     }
 
     public function getId(): ?int
@@ -238,44 +241,62 @@ class Medicament
         return $this;
     }
 
+    // /**
+    //  * @return Collection<int, InteractionMedicamenteuse>
+    //  */
+    // public function getInteractionMedicamenteuses(): Collection
+    // {
+    //     return $this->interactionMedicamenteuses;
+    // }
+
+    // public function addInteractionMedicamenteus(InteractionMedicamenteuse $interactionMedicamenteus): static
+    // {
+    //     if (!$this->interactionMedicamenteuses->contains($interactionMedicamenteus)) {
+    //         $this->interactionMedicamenteuses->add($interactionMedicamenteus);
+    //         $interactionMedicamenteus->setVictime($this);
+    //     }
+
+    //     return $this;
+    // }
+
+    // public function removeInteractionMedicamenteus(InteractionMedicamenteuse $interactionMedicamenteus): static
+    // {
+    //     if ($this->interactionMedicamenteuses->removeElement($interactionMedicamenteus)) {
+    //         // set the owning side to null (unless already changed)
+    //         if ($interactionMedicamenteus->getVictime() === $this) {
+    //             $interactionMedicamenteus->setVictime(null);
+    //         }
+    //     }
+
+    //     return $this;
+    // }
+
     /**
-     * @return Collection<int, InteractionMedicamenteuse>
+     * @return Collection<int, Stock>
      */
-    public function getInteractionMedicamenteuses(): Collection
+    public function getStocks(): Collection
     {
-        return $this->interactionMedicamenteuses;
+        return $this->stocks;
     }
 
-    public function addInteractionMedicamenteus(InteractionMedicamenteuse $interactionMedicamenteus): static
+    public function addStock(Stock $stock): static
     {
-        if (!$this->interactionMedicamenteuses->contains($interactionMedicamenteus)) {
-            $this->interactionMedicamenteuses->add($interactionMedicamenteus);
-            $interactionMedicamenteus->setVictime($this);
+        if (!$this->stocks->contains($stock)) {
+            $this->stocks->add($stock);
+            $stock->setMedicament($this);
         }
 
         return $this;
     }
 
-    public function removeInteractionMedicamenteus(InteractionMedicamenteuse $interactionMedicamenteus): static
+    public function removeStock(Stock $stock): static
     {
-        if ($this->interactionMedicamenteuses->removeElement($interactionMedicamenteus)) {
+        if ($this->stocks->removeElement($stock)) {
             // set the owning side to null (unless already changed)
-            if ($interactionMedicamenteus->getVictime() === $this) {
-                $interactionMedicamenteus->setVictime(null);
+            if ($stock->getMedicament() === $this) {
+                $stock->setMedicament(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getStock(): ?Stock
-    {
-        return $this->stock;
-    }
-
-    public function setStock(?Stock $stock): static
-    {
-        $this->stock = $stock;
 
         return $this;
     }
