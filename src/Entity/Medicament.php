@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MedicamentRepository::class)]
 class Medicament
@@ -16,21 +17,31 @@ class Medicament
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(max : 64, maxMessage:"Votre nom est trop long.")]
     #[ORM\Column(length: 64)]
     private ?string $nom_comm = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(max : 64, maxMessage:"Votre nom est trop long.")]
     #[ORM\Column(length: 64)]
     private ?string $nom_gen = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Positive(message:"Votre dosage doit-être positif.")]
     #[ORM\Column]
     private ?int $dosage = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Positive(message:"Votre dosage doit-être positif.")]
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
     private ?string $prix = null;
 
-    #[ORM\Column(length: 64)]
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
+    #[ORM\Column(length: 64, message : "Ce champ ne peux excédé 64 caractères")]
     private ?string $forme = null;
 
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $notice = null;
 
@@ -43,10 +54,13 @@ class Medicament
     #[ORM\Column(type: Types::TEXT)]
     private ?string $effet_sec = null;
 
+
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $composition = null;
 
-    #[ORM\Column(length: 64)]
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
+    #[ORM\Column(length: 64, message : "Ce champ ne peux excédé 64 caractères")]
     private ?string $fabricant = null;
 
     /**

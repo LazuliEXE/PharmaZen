@@ -21,6 +21,8 @@ class Stock
     #[ORM\Column(options:["unsigned"=>true])]
     private ?int $quantite = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Date]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_expiration = null;
 

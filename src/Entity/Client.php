@@ -20,13 +20,16 @@ class Client extends Personne
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $allergies = null;
 
-    #[Assert\Length(11)]
+    #[Assert\NotBlank]
+    #[Assert\Length(exactly:11)]
     #[ORM\Column(length:11)]
     private ?string $numero_secu = null;
 
+    #[Assert\NotBlank]
     #[ORM\Column]
     private ?bool $assurance = null;
 
+    #[Assert\Length(max:255)]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $assurance_name = null;
 

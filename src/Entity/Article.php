@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ArticleRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
@@ -14,30 +15,40 @@ class Article
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
     #[ORM\Column]
     private ?bool $alerte = null;
 
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
     #[ORM\Column(length: 255)]
     private ?string $titre = null;
 
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $contenu = null;
 
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
+    #[Assert\Date(message : "Votre valeur doit-être une date")]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_publi = null;
 
-    #[ORM\Column]
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
+    #[ORM\Column(message : "Votre valeur doit-être une date")]
     private ?bool $existant = null;
 
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
     #[ORM\Column(length: 128, nullable: true)]
     private ?string $auteur = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $lien = null;
 
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
+    #[Assert\DateTime(message : "Votre valeur doit-être une date")]
     #[ORM\Column]
     private ?\DateTimeImmutable $date_creation = null;
 
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
     #[ORM\ManyToOne(inversedBy: 'articles')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Pharmacien $redacteur = null;

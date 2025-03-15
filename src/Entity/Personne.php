@@ -6,23 +6,35 @@ use App\Repository\PersonneRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\MappedSuperclass;
+use Symfony\Component\Mime\Message;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[MappedSuperclass]
 abstract class Personne
 {
 
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
+    #[Assert\Length(max : 64, message : "Ce champ ne peux excédé 64 caractères")]
     #[ORM\Column(length: 64)]
     private ?string $nom = null;
 
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
+    #[Assert\Length(max : 64, message : "Ce champ ne peux excédé 64 caractères")]
     #[ORM\Column(length: 64)]
     private ?string $prenom = null;
 
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
+    #[Assert\Length(min : 10, max : 15, message : "Pensez à renseigner votre indicatif")]
     #[ORM\Column(length: 14, nullable: true)]
     private ?string $telephone = null;
 
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
+    #[Assert\Length(max : 255, message : "Ce champ ne peux excédé 255 caractères")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $courriel = null;
 
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
+    #[Assert\Date(message : "Votre valeur doit-être une date")]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $DOB = null;
 

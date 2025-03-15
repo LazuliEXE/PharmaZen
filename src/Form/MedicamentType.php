@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 
 class MedicamentType extends AbstractType
 {
@@ -17,7 +18,7 @@ class MedicamentType extends AbstractType
             ->add('nom_comm')
             ->add('nom_gen')
             ->add('dosage')
-            ->add('prix')
+            ->add('prix', MoneyType::class)
             ->add('forme')
             ->add('notice')
             ->add('indication')
