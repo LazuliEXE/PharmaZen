@@ -80,7 +80,7 @@ class Medicament
     /**
      * @var Collection<int, Stock>
      */
-    #[ORM\OneToMany(targetEntity: Stock::class, mappedBy: 'medicament', cascade: ['persist'])]
+    #[ORM\OneToMany(targetEntity: Stock::class, mappedBy: 'medicament', orphanRemoval:true, cascade: ['persist'])]
     #[Assert\Valid]
     private Collection $stocks;
 

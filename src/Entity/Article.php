@@ -33,7 +33,7 @@ class Article
     private ?\DateTimeInterface $date_publi = null;
 
     #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
-    #[ORM\Column(message : "Votre valeur doit-être une date")]
+    #[ORM\Column]
     private ?bool $existant = null;
 
     #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
