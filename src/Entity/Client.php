@@ -20,16 +20,16 @@ class Client extends Personne
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $allergies = null;
 
-    #[Assert\NotBlank]
-    #[Assert\Length(exactly:11)]
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
+    #[Assert\Length(exactly:11, message : "Ce champ fait exactement 11 caractères")]
     #[ORM\Column(length:11)]
     private ?string $numero_secu = null;
 
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
     #[ORM\Column]
     private ?bool $assurance = null;
 
-    #[Assert\Length(max:255)]
+    #[Assert\Length(max:255, message : "Ce champ ne peux excédé 255 caractères")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $assurance_name = null;
 

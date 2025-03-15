@@ -38,7 +38,8 @@ class Medicament
     private ?string $prix = null;
 
     #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
-    #[ORM\Column(length: 64, message : "Ce champ ne peux excédé 64 caractères")]
+    #[Assert\Length(max : 64, maxMessage:"Ce champ ne peux excédé 64 caractères")]
+    #[ORM\Column(length: 64)]
     private ?string $forme = null;
 
     #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
@@ -60,7 +61,8 @@ class Medicament
     private ?string $composition = null;
 
     #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
-    #[ORM\Column(length: 64, message : "Ce champ ne peux excédé 64 caractères")]
+    #[Assert\Length(max : 64, maxMessage: "Ce champ ne peux excédé 64 caractères")]
+    #[ORM\Column(length: 64)]
     private ?string $fabricant = null;
 
     /**
@@ -78,7 +80,8 @@ class Medicament
     /**
      * @var Collection<int, Stock>
      */
-    #[ORM\OneToMany(targetEntity: Stock::class, mappedBy: 'medicament')]
+    #[ORM\OneToMany(targetEntity: Stock::class, mappedBy: 'medicament', cascade: ['persist'])]
+    #[Assert\Valid]
     private Collection $stocks;
 
     public function __construct()

@@ -17,12 +17,13 @@ class Stock
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
     #[Assert\PositiveOrZero(message : "La quantité ne peut-être négative.")]
     #[ORM\Column(options:["unsigned"=>true])]
     private ?int $quantite = null;
 
-    #[Assert\NotBlank]
-    #[Assert\Date]
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
+    #[Assert\Date(message : "Votre valeur doit-être une date")]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_expiration = null;
 

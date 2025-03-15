@@ -6,6 +6,7 @@ use App\Entity\InteractionMedicamenteuse;
 use App\Entity\Medicament;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
@@ -29,6 +30,18 @@ class MedicamentType extends AbstractType
             // ->add('interaction_medicamenteuses', EntityType::class, [
                 // "class"=>InteractionMedicamenteuse::class
             // ])
+            ->add('stocks', CollectionType::class,[
+                'entry_type' => StockType::class,
+                'by_reference' => false,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'allow_delete' => true,
+                'attr' => [
+                    'data-controller' => 'form-collection',
+                    'data-form-collection-add-label-value' => "Ajouter une quantité",
+                    'data-form-collection-delete-label-value' => "Supprimer une quantité"
+                ]
+            ])
         ;
     }
 
