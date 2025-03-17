@@ -7,8 +7,13 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\MappedSuperclass;
 use Symfony\Component\Mime\Message;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
+#[UniqueEntity(
+    fields: ['nom', 'prenom', 'courriel'],
+    message: 'Vous possédez déjà un compte'
+)]
 #[MappedSuperclass]
 abstract class Personne
 {

@@ -6,7 +6,13 @@ use App\Repository\PharmacienRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
+#[UniqueEntity(
+    fields: ['numero_licence', 'rpps_pharmacien'],
+    message: 'Un pharmacien possède déjà ces informations'
+)]
 #[ORM\Entity(repositoryClass: PharmacienRepository::class)]
 class Pharmacien extends Personne
 {
@@ -14,10 +20,14 @@ class Pharmacien extends Personne
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
+    
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
+    #[Assert\Length(max : 32, message : "Ce champ ne peux excédé 32 caractères")]
     #[ORM\Column(length: 32)]
     private ?string $numero_licence = null;
 
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
+    #[Assert\Length(exactly:11, message : "Ce champ fait exactement 11 caractères")]
     #[ORM\Column]
     private ?int $rpps_pharmacien = null;
 
