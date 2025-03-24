@@ -37,7 +37,7 @@ class Article
     private ?bool $existant = null;
 
     #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
-    #[ORM\Column(length: 128, nullable: true)]
+    #[ORM\Column(length: 128)]
     private ?string $auteur = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]

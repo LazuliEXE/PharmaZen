@@ -17,9 +17,11 @@
         {{ include('base/_header.html.twig')}}
         {{ include('base/_subheader.html.twig')}}
         {{ include('base/_marquee.html.twig')}}
+        <div class="container-fluid">
         {% block body %}
         
         {% endblock %}
+        </div>
         {{ include('base/_footer.html.twig')}}
     </body>
 </html>

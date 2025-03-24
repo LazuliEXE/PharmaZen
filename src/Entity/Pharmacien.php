@@ -22,12 +22,12 @@ class Pharmacien extends Personne
     private ?int $id = null;
     
     #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
-    #[Assert\Length(max : 32, message : "Ce champ ne peux excédé 32 caractères")]
+    #[Assert\Length(max : 32, maxMessage : "Ce champ ne peux excédé 32 carqactères")]
     #[ORM\Column(length: 32)]
     private ?string $numero_licence = null;
 
     #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
-    #[Assert\Length(exactly:11, message : "Ce champ fait exactement 11 caractères")]
+    #[Assert\Length(exactly:11, exactMessage : "Ce champ fait exactement 11 caractères")]
     #[ORM\Column]
     private ?int $rpps_pharmacien = null;
 
@@ -36,6 +36,9 @@ class Pharmacien extends Personne
      */
     #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'redacteur')]
     private Collection $articles;
+
+    #[ORM\OneToOne(mappedBy: 'pharmacien', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -104,5 +107,22 @@ class Pharmacien extends Personne
     public function __toString(): string
     {
         return $this->getNom() . ' ' . $this->getPrenom();
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): static
+    {
+        // set the owning side of the relation if necessary
+        if ($user->getPharmacien() !== $this) {
+            $user->setPharmacien($this);
+        }
+
+        $this->user = $user;
+
+        return $this;
     }
 }

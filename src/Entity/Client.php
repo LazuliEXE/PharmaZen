@@ -17,6 +17,7 @@ class Client extends Personne
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $allergies = null;
 
