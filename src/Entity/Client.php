@@ -121,7 +121,7 @@ class Client extends Personne
         if ($this->achat_effectue->removeElement($achatEffectue)) {
             // set the owning side to null (unless already changed)
             if ($achatEffectue->getAcheteur() === $this) {
-                $achatEffectue->setAcheteur(null);
+                $achatEffectue->setAcheteur("Aucun Achetteur");
             }
         }
 
