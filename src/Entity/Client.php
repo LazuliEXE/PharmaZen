@@ -118,11 +118,9 @@ class Client extends Personne
 
     public function removeAchatEffectue(Achat $achatEffectue): static
     {
-        if ($this->achat_effectue->removeElement($achatEffectue)) {
+        if ($this->achat_effectue->removeElement($achatEffectue) && $achatEffectue->getAcheteur() === $this) {
             // set the owning side to null (unless already changed)
-            if ($achatEffectue->getAcheteur() === $this) {
-                $achatEffectue->setAcheteur("Aucun Achetteur");
-            }
+            $achatEffectue->setAcheteur(null);
         }
 
         return $this;
