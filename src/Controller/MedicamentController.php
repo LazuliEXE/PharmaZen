@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Medicament;
 use App\Form\MedicamentType;
 use App\Repository\MedicamentRepository;
+use App\Repository\StockRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,7 +29,6 @@ final class MedicamentController extends AbstractController
 
         $medicament = new Medicament();
         $form = $this->createForm(MedicamentType::class, $medicament);
-        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -79,4 +79,5 @@ final class MedicamentController extends AbstractController
 
         return $this->redirectToRoute('app_medicament_index', [], Response::HTTP_SEE_OTHER);
     }
+
 }

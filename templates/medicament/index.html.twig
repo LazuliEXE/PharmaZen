@@ -3,59 +3,7 @@
 {% block title %}Medicament index{% endblock %}
 
 {% block body %}
-    <h1>Medicament index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom_comm</th>
-                <th>Nom_gen</th>
-                <th>Dosage</th>
-                <th>Prix</th>
-                <th>Forme</th>
-                <th>Notice</th>
-                <th>Indication</th>
-                <th>Contre_indication</th>
-                <th>Effet_sec</th>
-                <th>Composition</th>
-                <th>Fabricant</th>
-                <th>Quantite</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for medicament in medicaments %}
-            <tr>
-                <td>{{ medicament.id }}</td>
-                <td>{{ medicament.nomComm }}</td>
-                <td>{{ medicament.nomGen }}</td>
-                <td>{{ medicament.dosage }}</td>
-                <td>{{ medicament.prix }}</td>
-                <td>{{ medicament.forme }}</td>
-                <td>{{ medicament.notice }}</td>
-                <td>{{ medicament.indication }}</td>
-                <td>{{ medicament.contreIndication }}</td>
-                <td>{{ medicament.effetSec }}</td>
-                <td>{{ medicament.composition }}</td>
-                <td>{{ medicament.fabricant }}</td>
-                {% set total = 0 %}
-                {% for stock in medicament.stocks %}
-                    {% set total = total + stock.quantite %}
-                {% endfor %}
-                <td>{{ total }}</td>
-                <td>
-                    <a href="{{ path('app_medicament_show', {'id': medicament.id}) }}">show</a>
-                    <a href="{{ path('app_medicament_edit', {'id': medicament.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="14">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_medicament_new') }}">Create new</a>
+    {% for medicaments in medicaments %}
+        
+    {% endfor %}
 {% endblock %}

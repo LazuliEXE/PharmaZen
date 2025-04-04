@@ -3,8 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Stock;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateType as TypeDateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,8 +14,9 @@ class StockType extends AbstractType
     {
         $builder
             ->add('quantite')
-            ->add('date_expiration', TypeDateType::class, [
+            ->add('date_expiration', DateType::class, [
                 'widget' => 'single_text',
+                'input' => 'datetime'
             ])
             // ->add('medicament', EntityType::class, [
             //     'class' => Medicament::class,
