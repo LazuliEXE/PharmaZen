@@ -1,3 +1,7 @@
+html{
+    scroll-behavior: smooth;
+}
+
 header {
     background: linear-gradient(to right,#659B5E, #556F44);
 }
@@ -53,4 +57,12 @@ a {
 .footer_a:hover {
     color: #f4f4f4;
     text-decoration : underline;
+}
+
+.grid-article{
+    display: grid;
+    grid-template-columns: repeat(5, 22rem);
+    gap: 3rem;
+    margin: 3rem;
+    justify-content: center
 }

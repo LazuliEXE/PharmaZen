@@ -1,0 +1,13 @@
+<div class="card" style="width: 22rem;">
+    <img src="https://picsum.photos/200/100" class="card-img-top" alt=""/>
+    <div class="card-body d-flex justify-content-center gap-3">
+        <div class="card-title">
+            <h3>{{medicament.nomComm}}</h3>
+            <h3>{{medicament.nomGen}}</h3>
+        </div>
+        <div class="card-attributes">
+            <h6>{{medicament.prix|format_currency('EUR', locale: 'fr')}}</h6>
+            <a href="#" class="btn btn-success text-nowrap">Ajouter au panier</a>
+        </div>
+    </div>
+</div>

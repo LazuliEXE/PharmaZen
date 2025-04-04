@@ -3,7 +3,9 @@
 {% block title %}Medicament index{% endblock %}
 
 {% block body %}
-    {% for medicaments in medicaments %}
-        
-    {% endfor %}
+    <div class="grid-article">
+        {% for medicament in medicaments %}
+            {{ include('components/_card.html.twig', {medicament}) }}
+        {% endfor %}
+    </div>
 {% endblock %}
