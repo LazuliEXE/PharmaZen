@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <h1>Panier</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Prix</th>
+                            <th>Quantité</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in data %}
+                            <tr>
+                                <td>
+                                    <ul class="list-unstyled mb-0">
+                                        <li><strong>Nom com :</strong> {{ element.medicament.getNomComm() }}</li>
+                                        <li><strong>Nom générique :</strong> {{ element.medicament.getNomGen() }}</li>
+                                        <li><strong>Dosage :</strong> {{ element.medicament.getDosage() }}</li>
+                                        <li><strong>Format :</strong> {{ element.medicament.getForme() }}</li>
+                                    </ul>
+                                </td>
+                                <td>{{ element.medicament.getPrix() }} €</td>
+                                <td>{{ element.quantite }}</td>
+                                <td>{{ element.quantite * element.medicament.getPrix() }} €</td>
+                                <td>
+                                    <a href="{{path('cart_add', {id: element.medicament.id}) }}" class="btn btn-success">+</a>
+                                    <a href="{{path('cart_remove', {id: element.medicament.id}) }}" class="btn btn-warning">-</a>
+                                    <a href="{{path('cart_delete', {id: element.medicament.id}) }}" class="btn btn-danger">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5">Votre panier est vide</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3"> <strong>Total : </strong></td>
+                            <td>{{total}} €</td>
+                            <td>
+                                <a href="{{path('cart_empty') }}" class="btn btn-danger">Vider</a>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </section>
+    </main>
+{% endblock %}
