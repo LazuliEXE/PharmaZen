@@ -26,7 +26,6 @@ Avant de commencer, assurez-vous d'avoir les outils suivants installés sur votr
 - Composer
 - Symfony CLI
 - MySQL
-- Node.js et NPM (pour gérer les assets avec Webpack Encore)
 - Git
 
 ### Étapes d'installation
