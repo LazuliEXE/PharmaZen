@@ -62,12 +62,12 @@ class Pharmacien extends Personne
         return $this;
     }
 
-    public function getRppsPharmacien(): ?int
+    public function getRppsPharmacien(): ?string
     {
         return $this->rpps_pharmacien;
     }
 
-    public function setRppsPharmacien(int $rpps_pharmacien): static
+    public function setRppsPharmacien(string $rpps_pharmacien): static
     {
         $this->rpps_pharmacien = $rpps_pharmacien;
 

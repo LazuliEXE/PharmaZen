@@ -12,6 +12,8 @@ final class OrdersController extends AbstractController
     #[Route('/ajout', name: 'add')]
     public function add(): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
         return $this->render('orders/index.html.twig', [
             'controller_name' => 'OrdersController',
         ]);
