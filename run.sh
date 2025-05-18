@@ -1,4 +1,3 @@
-```bash
 #!/bin/bash
 
 echo "Installation des dépendances PHP..."
