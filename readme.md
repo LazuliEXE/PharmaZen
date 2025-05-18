@@ -22,47 +22,70 @@ Ce projet est purement académique et ne vise pas une mise en production réelle
 
 ### Prérequis
 Avant de commencer, assurez-vous d'avoir les outils suivants installés sur votre machine :
-- PHP 8.1 ou plus récent
-- Composer
-- Symfony CLI
-- MySQL
-- Git
+- **WAMP** (ou un autre environnement PHP/MySQL)
+- **PHP** 8.2 ou plus récent
+- **Composer**
+- **Git**
+
+> 💡 Pour installer Git : [https://git-scm.com](https://git-scm.com)
+
+---
 
 ### Étapes d'installation
 
-1. **Cloner le projet**
-```bash
-git clone https://github.com/ton-profil/pharmazen.git
-cd pharmazen
-```
+1. **Cloner le projet depuis GitHub**  
+   Ouvrez un terminal et exécutez :
+   ```bash
+   git clone https://github.com/ton-profil/pharmazen.git
+   cd pharmazen
 
-2. **Installer les dépendances PHP**
-```bash
-composer install
-```
+2. **Configurer les variables d'environnement**
+Copiez le fichier .env vers .env.local et modifiez la chaîne de connexion à la base de données :
 
-3. **Configurer les variables d'environnement**
-Copiez le fichier `.env` et configurez votre base de données MySQL :
+Copier le code
 ```bash
 cp .env .env.local
 ```
-Dans le fichier `.env.local`, modifiez la ligne suivante avec vos informations :
-```
+Exemple de configuration :
+
+Copier le code
+```ini
 DATABASE_URL="mysql://root:password@127.0.0.1:3306/pharmazen"
 ```
+3. **Lancer le script d'installation automatique**
 
-4. **Créer la base de données**
+Sous Linux / macOS :
+Le script run.sh automatise les étapes suivantes :
+
+Installation des dépendances
+
+Création de la base de données
+
+Exécution des migrations
+
+Chargement des données de démonstration (fixtures)
+
+Exécutez la commande :
+
+Copier le code
 ```bash
-symfony console doctrine:database:create
-symfony console doctrine:migrations:migrate
+./run.sh
+```
+⚠️ Si le script ne s'exécute pas, donnez-lui les droits d'exécution :
+
+Copier le code
+```bash
+chmod +x run.sh
 ```
 
-5. **Installer les dépendances frontend**
+Sous Windows :
+Lancez le script run.bat en double-cliquant dessus ou via l'invite de commande :
+
 ```bash
-npm install
+run.sh
 ```
 
-6. **Lancer le serveur Symfony**
+4. **Lancer le serveur Symfony**
 ```bash
 symfony serve
 ```
