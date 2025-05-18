@@ -40,56 +40,56 @@ Avant de commencer, assurez-vous d'avoir les outils suivants installés sur votr
    cd pharmazen
 
 2. **Configurer les variables d'environnement**
-Copiez le fichier .env vers .env.local et modifiez la chaîne de connexion à la base de données :
-
-Copier le code
-```bash
-cp .env .env.local
-```
-Exemple de configuration :
-
-Copier le code
-```ini
-DATABASE_URL="mysql://root:password@127.0.0.1:3306/pharmazen"
-```
+   Copiez le fichier .env vers .env.local et modifiez la chaîne de connexion à la base de données :
+   
+   Copier le code
+   ```bash
+   cp .env .env.local
+   ```
+   Exemple de configuration :
+   
+   Copier le code
+   ```ini
+   DATABASE_URL="mysql://root:password@127.0.0.1:3306/pharmazen"
+   ```
 3. **Lancer le script d'installation automatique**
-
-Sous Linux / macOS :
-Le script run.sh automatise les étapes suivantes :
-
-Installation des dépendances
-
-Création de la base de données
-
-Exécution des migrations
-
-Chargement des données de démonstration (fixtures)
-
-Exécutez la commande :
-
-Copier le code
-```bash
-./run.sh
-```
-⚠️ Si le script ne s'exécute pas, donnez-lui les droits d'exécution :
-
-Copier le code
-```bash
-chmod +x run.sh
-```
-
-Sous Windows :
-Lancez le script run.bat en double-cliquant dessus ou via l'invite de commande :
-
-```bash
-run.sh
-```
+   
+   Sous Linux / macOS :
+   Le script run.sh automatise les étapes suivantes :
+   
+   Installation des dépendances
+   
+   Création de la base de données
+   
+   Exécution des migrations
+   
+   Chargement des données de démonstration (fixtures)
+   
+   Exécutez la commande :
+   
+   Copier le code
+   ```bash
+   ./run.sh
+   ```
+   ⚠️ Si le script ne s'exécute pas, donnez-lui les droits d'exécution :
+   
+   Copier le code
+   ```bash
+   chmod +x run.sh
+   ```
+   
+   Sous Windows :
+   Lancez le script run.bat en double-cliquant dessus ou via l'invite de commande :
+   
+   ```bash
+   run.sh
+   ```
 
 4. **Lancer le serveur Symfony**
-```bash
-symfony serve
-```
-Le projet sera accessible par défaut à l'adresse : [http://localhost:8000](http://localhost:8000)
+   ```bash
+   symfony serve
+   ```
+   Le projet sera accessible par défaut à l'adresse : [http://localhost:8000](http://localhost:8000)
 
 ---
 
