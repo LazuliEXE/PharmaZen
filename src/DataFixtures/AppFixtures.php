@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Medicament;
 use App\Entity\Pharmacien;
 use App\Entity\User;
+use App\Entity\Forme; // Ajout de l'entité Forme
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -15,21 +16,64 @@ class AppFixtures extends Fixture
     public function __construct(private UserPasswordHasherInterface $hasher)
     {
     }
+
     public function load(ObjectManager $manager): void
     {
+        // Création des formes de médicaments
+        $formeComprime = new Forme();
+        $formeComprime->setLibforme("Comprimé");
+        $manager->persist($formeComprime);
+
+        $formeCapsule = new Forme();
+        $formeCapsule->setLibforme("Capsule");
+        $manager->persist($formeCapsule);
+
+        $formeLyophilisat = new Forme();
+        $formeLyophilisat->setLibforme("Lyophilisat");
+        $manager->persist($formeLyophilisat);
+
+        $formeComprimePellicule = new Forme();
+        $formeComprimePellicule->setLibforme("Comprimé pelliculé");
+        $manager->persist($formeComprimePellicule);
+
+        $formeSuppositoire = new Forme();
+        $formeSuppositoire->setLibforme("Suppositoire");
+        $manager->persist($formeSuppositoire);
+
+        $formeGelule = new Forme();
+        $formeGelule->setLibforme("Gélule");
+        $manager->persist($formeGelule);
+
+        $formeSirop = new Forme();
+        $formeSirop->setLibforme("Sirop");
+        $manager->persist($formeSirop);
+
+        $formeSolutionBuvable = new Forme();
+        $formeSolutionBuvable->setLibforme("Solution buvable");
+        $manager->persist($formeSolutionBuvable);
+
+        $formePommade = new Forme();
+        $formePommade->setLibforme("Pommade");
+        $manager->persist($formePommade);
+
+        $formeCollyre = new Forme();
+        $formeCollyre->setLibforme("Collyre");
+        $manager->persist($formeCollyre);
+
+        // Création des médicaments avec relation aux formes
         $medicament = new Medicament();
-        $medicament 
-        -> setNomComm("Paracétamol") 
-        -> setNomGen("Ibuprofen")
-        -> setDosage(1000)
-        -> setPrix("3.50")
-        -> setForme("Comprimé")
-        -> setNotice("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus efficitur pharetra metus. Nulla aliquam at mauris eu faucibus. Nunc sit amet odio id lorem gravida condimentum. Aliquam erat volutpat. Mauris rutrum vehicula commodo. Ut lacus orci, vehicula sed erat at, efficitur maximus libero. Morbi volutpat blandit erat, eget suscipit sapien. Ut luctus felis tellus, ac fringilla libero euismod non. Quisque sed facilisis est. Proin pulvinar facilisis feugiat. Suspendisse vitae eros finibus nulla congue finibus. Mauris sed velit sed lorem mattis interdum egestas a turpis. Vivamus blandit nisl quis risus hendrerit, in placerat justo suscipit. Aliquam non nulla et purus consectetur efficitur vitae sed justo.")
-        -> setIndication("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus efficitur pharetra metus. Nulla aliquam at mauris eu faucibus. Nunc sit amet odio id lorem gravida condimentum. Aliquam erat volutpat. Mauris rutrum vehicula commodo. Ut lacus orci, vehicula sed erat at, efficitur maximus libero. Morbi volutpat blandit erat, eget suscipit sapien. Ut luctus felis tellus, ac fringilla libero euismod non. Quisque sed facilisis est. Proin pulvinar facilisis feugiat. Suspendisse vitae eros finibus nulla congue finibus. Mauris sed velit sed lorem mattis interdum egestas a turpis. Vivamus blandit nisl quis risus hendrerit, in placerat justo suscipit. Aliquam non nulla et purus consectetur efficitur vitae sed justo.")
-        -> setContreIndication("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus efficitur pharetra metus. Nulla aliquam at mauris eu faucibus. Nunc sit amet odio id lorem gravida condimentum. Aliquam erat volutpat. Mauris rutrum vehicula commodo. Ut lacus orci, vehicula sed erat at, efficitur maximus libero. Morbi volutpat blandit erat, eget suscipit sapien. Ut luctus felis tellus, ac fringilla libero euismod non. Quisque sed facilisis est. Proin pulvinar facilisis feugiat. Suspendisse vitae eros finibus nulla congue finibus. Mauris sed velit sed lorem mattis interdum egestas a turpis. Vivamus blandit nisl quis risus hendrerit, in placerat justo suscipit. Aliquam non nulla et purus consectetur efficitur vitae sed justo.")
-        -> setEffetSec("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus efficitur pharetra metus. Nulla aliquam at mauris eu faucibus. Nunc sit amet odio id lorem gravida condimentum. Aliquam erat volutpat. Mauris rutrum vehicula commodo. Ut lacus orci, vehicula sed erat at, efficitur maximus libero. Morbi volutpat blandit erat, eget suscipit sapien. Ut luctus felis tellus, ac fringilla libero euismod non. Quisque sed facilisis est. Proin pulvinar facilisis feugiat. Suspendisse vitae eros finibus nulla congue finibus. Mauris sed velit sed lorem mattis interdum egestas a turpis. Vivamus blandit nisl quis risus hendrerit, in placerat justo suscipit. Aliquam non nulla et purus consectetur efficitur vitae sed justo.")
-        -> setComposition("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus efficitur pharetra metus. Nulla aliquam at mauris eu faucibus. Nunc sit amet odio id lorem gravida condimentum. Aliquam erat volutpat. Mauris rutrum vehicula commodo. Ut lacus orci, vehicula sed erat at, efficitur maximus libero. Morbi volutpat blandit erat, eget suscipit sapien. Ut luctus felis tellus, ac fringilla libero euismod non. Quisque sed facilisis est. Proin pulvinar facilisis feugiat. Suspendisse vitae eros finibus nulla congue finibus. Mauris sed velit sed lorem mattis interdum egestas a turpis. Vivamus blandit nisl quis risus hendrerit, in placerat justo suscipit. Aliquam non nulla et purus consectetur efficitur vitae sed justo.")
-        -> setFabricant("Sanofi");
+        $medicament
+            ->setNomComm("Paracétamol")
+            ->setNomGen("Ibuprofen")
+            ->setDosage(1000)
+            ->setPrix("3.50")
+            ->setIdForme($formeComprime) // Relation avec la forme
+            ->setNotice("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus efficitur pharetra metus. Nulla aliquam at mauris eu faucibus. Nunc sit amet odio id lorem gravida condimentum. Aliquam erat volutpat. Mauris rutrum vehicula commodo. Ut lacus orci, vehicula sed erat at, efficitur maximus libero. Morbi volutpat blandit erat, eget suscipit sapien. Ut luctus felis tellus, ac fringilla libero euismod non. Quisque sed facilisis est. Proin pulvinar facilisis feugiat. Suspendisse vitae eros finibus nulla congue finibus. Mauris sed velit sed lorem mattis interdum egestas a turpis. Vivamus blandit nisl quis risus hendrerit, in placerat justo suscipit. Aliquam non nulla et purus consectetur efficitur vitae sed justo.")
+            ->setIndication("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus efficitur pharetra metus. Nulla aliquam at mauris eu faucibus. Nunc sit amet odio id lorem gravida condimentum. Aliquam erat volutpat. Mauris rutrum vehicula commodo. Ut lacus orci, vehicula sed erat at, efficitur maximus libero. Morbi volutpat blandit erat, eget suscipit sapien. Ut luctus felis tellus, ac fringilla libero euismod non. Quisque sed facilisis est. Proin pulvinar facilisis feugiat. Suspendisse vitae eros finibus nulla congue finibus. Mauris sed velit sed lorem mattis interdum egestas a turpis. Vivamus blandit nisl quis risus hendrerit, in placerat justo suscipit. Aliquam non nulla et purus consectetur efficitur vitae sed justo.")
+            ->setContreIndication("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus efficitur pharetra metus. Nulla aliquam at mauris eu faucibus. Nunc sit amet odio id lorem gravida condimentum. Aliquam erat volutpat. Mauris rutrum vehicula commodo. Ut lacus orci, vehicula sed erat at, efficitur maximus libero. Morbi volutpat blandit erat, eget suscipit sapien. Ut luctus felis tellus, ac fringilla libero euismod non. Quisque sed facilisis est. Proin pulvinar facilisis feugiat. Suspendisse vitae eros finibus nulla congue finibus. Mauris sed velit sed lorem mattis interdum egestas a turpis. Vivamus blandit nisl quis risus hendrerit, in placerat justo suscipit. Aliquam non nulla et purus consectetur efficitur vitae sed justo.")
+            ->setEffetSec("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus efficitur pharetra metus. Nulla aliquam at mauris eu faucibus. Nunc sit amet odio id lorem gravida condimentum. Aliquam erat volutpat. Mauris rutrum vehicula commodo. Ut lacus orci, vehicula sed erat at, efficitur maximus libero. Morbi volutpat blandit erat, eget suscipit sapien. Ut luctus felis tellus, ac fringilla libero euismod non. Quisque sed facilisis est. Proin pulvinar facilisis feugiat. Suspendisse vitae eros finibus nulla congue finibus. Mauris sed velit sed lorem mattis interdum egestas a turpis. Vivamus blandit nisl quis risus hendrerit, in placerat justo suscipit. Aliquam non nulla et purus consectetur efficitur vitae sed justo.")
+            ->setComposition("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus efficitur pharetra metus. Nulla aliquam at mauris eu faucibus. Nunc sit amet odio id lorem gravida condimentum. Aliquam erat volutpat. Mauris rutrum vehicula commodo. Ut lacus orci, vehicula sed erat at, efficitur maximus libero. Morbi volutpat blandit erat, eget suscipit sapien. Ut luctus felis tellus, ac fringilla libero euismod non. Quisque sed facilisis est. Proin pulvinar facilisis feugiat. Suspendisse vitae eros finibus nulla congue finibus. Mauris sed velit sed lorem mattis interdum egestas a turpis. Vivamus blandit nisl quis risus hendrerit, in placerat justo suscipit. Aliquam non nulla et purus consectetur efficitur vitae sed justo.")
+            ->setFabricant("Sanofi");
         $manager->persist($medicament);
 
         $medicament1 = new Medicament();
@@ -38,7 +82,7 @@ class AppFixtures extends Fixture
             ->setNomGen("Paracétamol")
             ->setDosage(500)
             ->setPrix("2.00")
-            ->setForme("Comprimé")
+            ->setIdForme($formeComprime) // Relation avec la forme
             ->setNotice("Notice Doliprane...")
             ->setIndication("Indication Doliprane...")
             ->setContreIndication("Contre-indication Doliprane...")
@@ -53,7 +97,7 @@ class AppFixtures extends Fixture
             ->setNomGen("Ibuprofène")
             ->setDosage(400)
             ->setPrix("3.00")
-            ->setForme("Capsule")
+            ->setIdForme($formeCapsule) // Relation avec la forme
             ->setNotice("Notice Nurofen...")
             ->setIndication("Indication Nurofen...")
             ->setContreIndication("Contre-indication Nurofen...")
@@ -68,7 +112,7 @@ class AppFixtures extends Fixture
             ->setNomGen("Phloroglucinol")
             ->setDosage(80)
             ->setPrix("2.50")
-            ->setForme("Lyophilisat")
+            ->setIdForme($formeLyophilisat) // Relation avec la forme
             ->setNotice("Notice Spasfon...")
             ->setIndication("Indication Spasfon...")
             ->setContreIndication("Contre-indication Spasfon...")
@@ -83,7 +127,7 @@ class AppFixtures extends Fixture
             ->setNomGen("Amoxicilline + Acide clavulanique")
             ->setDosage(875)
             ->setPrix("6.50")
-            ->setForme("Comprimé pelliculé")
+            ->setIdForme($formeComprimePellicule) // Relation avec la forme
             ->setNotice("Notice Augmentin...")
             ->setIndication("Indication Augmentin...")
             ->setContreIndication("Contre-indication Augmentin...")
@@ -98,7 +142,7 @@ class AppFixtures extends Fixture
             ->setNomGen("Paracétamol")
             ->setDosage(1000)
             ->setPrix("4.00")
-            ->setForme("Suppositoire")
+            ->setIdForme($formeSuppositoire) // Relation avec la forme
             ->setNotice("Notice Dafalgan...")
             ->setIndication("Indication Dafalgan...")
             ->setContreIndication("Contre-indication Dafalgan...")
@@ -107,6 +151,7 @@ class AppFixtures extends Fixture
             ->setFabricant("UPSA");
         $manager->persist($medicament5);
 
+        // Création des pharmaciens et utilisateurs (inchangé)
         $pharmacien = new Pharmacien();
         $pharmacien
             ->setNom("Philibert")
@@ -121,7 +166,7 @@ class AppFixtures extends Fixture
         $user
             ->setCourriel("test@example.com")
             ->setRoles(["ROLE_ADMIN"])
-            ->setPassword($this -> hasher -> hashPassword($user, "0000"))
+            ->setPassword($this->hasher->hashPassword($user, "0000"))
             ->setPharmacien($pharmacien);
         $manager->persist($user);
 
@@ -139,7 +184,7 @@ class AppFixtures extends Fixture
         $user1
             ->setCourriel("sophie.lemoine@example.com")
             ->setRoles(["ROLE_USER"])
-            ->setPassword($this -> hasher -> hashPassword($user, "0000"))
+            ->setPassword($this->hasher->hashPassword($user, "0000"))
             ->setPharmacien($pharmacien1);
         $manager->persist($user1);
 
@@ -157,7 +202,7 @@ class AppFixtures extends Fixture
         $user2
             ->setCourriel("julien.martin@example.com")
             ->setRoles(["ROLE_USER"])
-            ->setPassword($this -> hasher -> hashPassword($user2, "0000"))
+            ->setPassword($this->hasher->hashPassword($user2, "0000"))
             ->setPharmacien($pharmacien2);
         $manager->persist($user2);
 
@@ -175,7 +220,7 @@ class AppFixtures extends Fixture
         $user3
             ->setCourriel("claire.moreau@example.com")
             ->setRoles(["ROLE_USER"])
-            ->setPassword($this -> hasher -> hashPassword($user3, "0000"))
+            ->setPassword($this->hasher->hashPassword($user3, "0000"))
             ->setPharmacien($pharmacien3);
         $manager->persist($user3);
 

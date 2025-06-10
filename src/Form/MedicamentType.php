@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\InteractionMedicamenteuse;
 use App\Entity\Medicament;
+use App\Entity\Forme;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -20,7 +21,13 @@ class MedicamentType extends AbstractType
             ->add('nom_gen')
             ->add('dosage')
             ->add('prix', MoneyType::class)
-            ->add('forme')
+            ->add('id_forme', EntityType::class, [
+                'class' => Forme::class,
+                'choice_label' => 'LibForme', // Le champ à afficher dans la liste
+                'label' => 'Forme du médicament',
+                'placeholder' => 'Sélectionnez une forme',
+                'required' => true,
+            ])
             ->add('notice')
             ->add('indication')
             ->add('contre_indication')

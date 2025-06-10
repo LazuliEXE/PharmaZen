@@ -38,11 +38,6 @@ class Medicament
     private ?string $prix = null;
 
     #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
-    #[Assert\Length(max : 64, maxMessage:"Ce champ ne peux excédé 64 caractères")]
-    #[ORM\Column(length: 64)]
-    private ?string $forme = null;
-
-    #[Assert\NotBlank(message : "Ce champ ne peut-être vide")]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $notice = null;
 
@@ -83,6 +78,10 @@ class Medicament
     #[ORM\OneToMany(targetEntity: Stock::class, mappedBy: 'medicament', orphanRemoval:true, cascade: ['persist'])]
     #[Assert\Valid]
     private Collection $stocks;
+
+    #[ORM\ManyToOne(inversedBy: 'medicaments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Forme $id_forme = null;
 
     public function __construct()
     {
@@ -140,18 +139,6 @@ class Medicament
     public function setPrix(string $prix): static
     {
         $this->prix = $prix;
-
-        return $this;
-    }
-
-    public function getForme(): ?string
-    {
-        return $this->forme;
-    }
-
-    public function setForme(string $forme): static
-    {
-        $this->forme = $forme;
 
         return $this;
     }
@@ -314,6 +301,18 @@ class Medicament
                 $stock->setMedicament(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIdForme(): ?Forme
+    {
+        return $this->id_forme;
+    }
+
+    public function setIdForme(?Forme $id_forme): static
+    {
+        $this->id_forme = $id_forme;
 
         return $this;
     }
